@@ -40,6 +40,7 @@ app.get('/api/hello', function(req, res) {
 app.get('/api/shorturl/:url', function(req, res)
 {
   var daUrl = req.params.url;
+  console.log(daUrl);
   Url.findOne({shortened: daUrl}, function (err, data)
   {
     if (err) console.log(err);
