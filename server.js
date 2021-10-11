@@ -51,13 +51,15 @@ app.post('/api/shorturl', function(req, res)
   
       // console.log(small);
       res.json({"original_url": req.body.url, "short_url": funnyNum});
-      // saved!
-    });
-  
-    Url.find({}, function (err, docs) 
+
+      Url.find({}, function (err, docs) 
     {
       console.log(docs);
     });
+      // saved!
+    });
+  
+    
   });
   // console.log('there are %d URLS', count);
   
