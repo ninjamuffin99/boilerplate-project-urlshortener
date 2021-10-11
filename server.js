@@ -64,6 +64,8 @@ app.post('/api/shorturl', function(req, res)
   swagUrl.match("[a-zA-Z]+\.[a-zA-Z]+", "g");
   
 
+  console.log('CLEANED URL: ' + swagUrl);
+
   dns.lookup(swagUrl, (err, address, family) => {
 
     if (err) return console.log('URL ERR!!' + err);
