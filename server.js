@@ -61,7 +61,8 @@ app.post('/api/shorturl', function(req, res)
   //regex
   //   /[a-zA-Z]+\.[a-zA-Z]+/g
 
-  swagUrl.match("[a-zA-Z]+\.[a-zA-Z]+", "g");
+  swagUrl.replace("https://", "");
+  swagUrl.replace("http://", "");
   
 
   console.log('CLEANED URL: ' + swagUrl);
