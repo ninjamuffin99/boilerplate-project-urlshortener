@@ -81,11 +81,11 @@ app.post('/api/shorturl', function(req, res)
     funnyNum = count + 1;
     // console.log( "Number of users:", count );
 
-    Url.create({ original_url: req.body.url, shortened: funnyNum }, function (err, small) {
+    Url.create({ original_url: swagUrl, shortened: funnyNum }, function (err, small) {
       if (err) return handleError(err);
   
       // console.log(small);
-      res.json({"original_url": req.body.url, "short_url": funnyNum});
+      res.json({"original_url": swagUrl, "short_url": funnyNum});
 
       Url.find({}, function (err, docs) 
     {
