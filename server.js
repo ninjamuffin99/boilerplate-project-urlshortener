@@ -40,7 +40,7 @@ app.get('/api/hello', function(req, res) {
 
 app.post('/api/shorturl', function(req, res)
 {
-  const count = await Url.estimatedDocumentCount();
+  const count = Url.estimatedDocumentCount();
   console.log('there are %d URLS', count);
 
   let awesomeUrl = new Url({name: req.body.url, shortened: 1});
