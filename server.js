@@ -56,7 +56,15 @@ app.post('/api/shorturl', function(req, res)
 {
   let funnyNum = 0;
 
-  dns.lookup(req.body.url, (err, address, family) => {
+  var swagUrl = req.body.url;
+
+  //regex
+  //   /[a-zA-Z]+\.[a-zA-Z]+/g
+
+  swagUrl.match("[a-zA-Z]+\.[a-zA-Z]+", "g");
+  
+
+  dns.lookup(swagUrl, (err, address, family) => {
 
     if (err) return console.log('URL ERR!!' + err);
 
