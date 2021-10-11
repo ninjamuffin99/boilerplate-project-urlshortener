@@ -40,24 +40,27 @@ app.get('/api/hello', function(req, res) {
 
 app.post('/api/shorturl', function(req, res)
 {
+  let funnyNum = 0;
+
   Url.count({}, function( err, count){
+    funnyNum = count + 1;
     console.log( "Number of users:", count );
   });
   // console.log('there are %d URLS', count);
-  Url.find({ shortened: 1}, function (err, docs) 
-  {
-    console.log(docs);
-  });
+  
 
-  Url.create({ url: req.body.url, shortened: 1 }, function (err, small) {
+  Url.create({ url: req.body.url, shortened: funnyNum }, function (err, small) {
     if (err) return handleError(err);
 
     console.log(small);
-    res.json({"original_url": req.body.url});
+    res.json({"original_url": req.body.url, "short_url": funnyNum});
     // saved!
   });
 
-
+  Url.find({}, function (err, docs) 
+  {
+    console.log(docs);
+  });
   
 });
 
