@@ -52,7 +52,7 @@ app.post('/api/shorturl', function(req, res)
   Url.create({ url: req.body.url, shortened: funnyNum }, function (err, small) {
     if (err) return handleError(err);
 
-    console.log(small);
+    // console.log(small);
     res.json({"original_url": req.body.url, "short_url": funnyNum});
     // saved!
   });
