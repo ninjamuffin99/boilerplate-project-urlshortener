@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 const {Schema} = mongoose;
 
 const urlSchema = new Schema({
-  url: String,
+  original_url: String,
   shortened: Number
 });
 
@@ -58,7 +58,7 @@ app.post('/api/shorturl', function(req, res)
     funnyNum = count + 1;
     console.log( "Number of users:", count );
 
-    Url.create({ url: req.body.url, shortened: funnyNum }, function (err, small) {
+    Url.create({ original_url: req.body.original_url, shortened: funnyNum }, function (err, small) {
       if (err) return handleError(err);
   
       // console.log(small);
