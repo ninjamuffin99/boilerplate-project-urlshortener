@@ -23,7 +23,7 @@ app.get('/api/hello', function(req, res) {
 app.post('/api/shorturl', function(req, res)
 {
   console.log(req.body);
-  res.json({body: req.body});
+  res.json({"body": req.body});
 });
 
 app.listen(port, function() {
