@@ -48,7 +48,13 @@ app.get('/api/shorturl/:url', function(req, res)
     if (err) console.log(err);
 
     console.log(data);
-    res.redirect("http://" + data.original_url);
+
+    var swagURL = data.original_url;
+
+    if (!swagURL.startsWith("https://") || !swagURL.startsWith("http://"))
+      res.redirect("http://" + data.original_url);
+    else
+      res.redirect(data.original_url);
   });
 });
 
