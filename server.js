@@ -43,12 +43,16 @@ app.post('/api/shorturl', function(req, res)
   const count = Url.estimatedDocumentCount();
   console.log('there are %d URLS', count);
 
-  let awesomeUrl = new Url({name: req.body.url, shortened: 1});
-  awesomeUrl.save();
+  Tank.create({ url: req.body.url, shortened: 1 }, function (err, small) {
+    if (err) return handleError(err);
+
+    console.log(small);
+    res.json({"original_url": req.body.url});
+    // saved!
+  });
 
 
-  console.log(req.body);
-  res.json({"original_url": req.body.url});
+  
 });
 
 app.listen(port, function() {
