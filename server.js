@@ -44,6 +44,7 @@ app.post('/api/shorturl', function(req, res)
   console.log('there are %d URLS', count);
 
   let awesomeUrl = new Url({name: req.body.url, shortened: 1});
+  awesomeUrl.save();
 
 
   console.log(req.body);
