@@ -41,7 +41,11 @@ app.get('/api/hello', function(req, res) {
 app.post('/api/shorturl', function(req, res)
 {
   const count = Url.estimatedDocumentCount();
-  console.log('there are %d URLS', count);
+  // console.log('there are %d URLS', count);
+  Url.find({ shortened: 1}, function (err, docs) 
+  {
+    console.log(docs);
+  });
 
   Url.create({ url: req.body.url, shortened: 1 }, function (err, small) {
     if (err) return handleError(err);
