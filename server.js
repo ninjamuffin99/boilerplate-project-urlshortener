@@ -48,7 +48,7 @@ app.get('/api/shorturl/:url', function(req, res)
     if (err) console.log(err);
 
     console.log(data);
-    res.redirect(data.original_url);
+    res.redirect("http://" + data.original_url);
   });
 });
 
