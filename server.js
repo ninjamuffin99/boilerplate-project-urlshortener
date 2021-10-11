@@ -4,6 +4,8 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 
+const dns = require('dns');
+
 var mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -54,9 +56,13 @@ app.post('/api/shorturl', function(req, res)
 {
   let funnyNum = 0;
 
+  dns.lookup(req.body.url, (err, address, family) => {
+    console.log('address: %j family: IPv%s', address, family);
+  });
+
   Url.count({}, function( err, count){
     funnyNum = count + 1;
-    console.log( "Number of users:", count );
+    // console.log( "Number of users:", count );
 
     Url.create({ original_url: req.body.url, shortened: funnyNum }, function (err, small) {
       if (err) return handleError(err);
@@ -66,7 +72,7 @@ app.post('/api/shorturl', function(req, res)
 
       Url.find({}, function (err, docs) 
     {
-      console.log(docs);
+      // console.log(docs);
     });
       // saved!
     });
