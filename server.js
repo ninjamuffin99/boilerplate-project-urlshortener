@@ -40,7 +40,9 @@ app.get('/api/hello', function(req, res) {
 
 app.post('/api/shorturl', function(req, res)
 {
-  const count = Url.estimatedDocumentCount();
+  Url.count({}, function( err, count){
+    console.log( "Number of users:", count );
+  });
   // console.log('there are %d URLS', count);
   Url.find({ shortened: 1}, function (err, docs) 
   {
