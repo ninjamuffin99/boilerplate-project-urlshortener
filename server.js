@@ -43,7 +43,7 @@ app.post('/api/shorturl', function(req, res)
   const count = Url.estimatedDocumentCount();
   console.log('there are %d URLS', count);
 
-  Tank.create({ url: req.body.url, shortened: 1 }, function (err, small) {
+  Url.create({ url: req.body.url, shortened: 1 }, function (err, small) {
     if (err) return handleError(err);
 
     console.log(small);
