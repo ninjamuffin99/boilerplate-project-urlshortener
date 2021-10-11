@@ -37,6 +37,17 @@ app.get('/api/hello', function(req, res) {
   res.json({ greeting: 'hello API' });
 });
 
+app.get('/api/shorturl/:url', function(req, res)
+{
+  var daUrl = req.params.url;
+  Url.findOne({shortened: daUrl}, function (err, data)
+  {
+    if (err) console.log(err);
+
+    console.log(data);
+    res.redirect(data.original_url);
+  });
+});
 
 app.post('/api/shorturl', function(req, res)
 {
