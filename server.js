@@ -57,7 +57,13 @@ app.post('/api/shorturl', function(req, res)
   let funnyNum = 0;
 
   dns.lookup(req.body.url, (err, address, family) => {
-    console.log('address: %j family: IPv%s', address, family);
+
+    if (err) return console.log('URL ERR!!' + err);
+
+    if (address)
+      console.log('address: %j family: IPv%s', address, family);
+    else
+      console.log('imporper address!');
   });
 
   Url.count({}, function( err, count){
