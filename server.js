@@ -73,30 +73,39 @@ app.post('/api/shorturl', function(req, res)
     if (err) return console.log('URL ERR!!' + err);
 
     if (address)
-      console.log('address: %j family: IPv%s', address, family);
-    else
-      console.log('imporper address!');
-  });
-
-  Url.count({}, function( err, count){
-    funnyNum = count + 1;
-    // console.log( "Number of users:", count );
-
-    Url.create({ original_url: swagUrl, shortened: funnyNum }, function (err, small) {
-      if (err) return handleError(err);
-  
-      // console.log(small);
-      res.json({"original_url": swagUrl, "short_url": funnyNum});
-
-      Url.find({}, function (err, docs) 
     {
-      // console.log(docs);
-    });
-      // saved!
-    });
-  
+      console.log('address: %j family: IPv%s', address, family);
+      Url.count({}, function( err, count){
+        funnyNum = count + 1;
+        // console.log( "Number of users:", count );
     
+        Url.create({ original_url: swagUrl, shortened: funnyNum }, function (err, small) {
+          if (err) return handleError(err);
+      
+          // console.log(small);
+          res.json({"original_url": swagUrl, "short_url": funnyNum});
+    
+          Url.find({}, function (err, docs) 
+        {
+          // console.log(docs);
+        });
+          // saved!
+        });
+      
+        
+      });
+    }
+    else
+    {
+      console.log('imporper address!');
+
+      res.json({ error: 'invalid url' });
+    }
+
+      
   });
+
+ 
   // console.log('there are %d URLS', count);
   
 
