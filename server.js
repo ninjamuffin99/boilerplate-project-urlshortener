@@ -70,7 +70,11 @@ app.post('/api/shorturl', function(req, res)
 
   dns.lookup(swagUrl, (err, address, family) => {
 
-    if (err) return res.json({ error: 'invalid url' });
+    if (err)
+    {
+      res.json({ error: 'invalid url' });
+      return console.log(err);
+    } 
 
     if (address)
     {
